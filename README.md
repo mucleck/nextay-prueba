@@ -195,3 +195,44 @@ LEFT JOIN rates r
 ## Manejo de errores en /api/* 
 
 explicar lo de app.php en el boostrap
+
+
+# Decisiones del frontend 
+
+Aquí la cosa se me ha complicado mucho porque no he tocado nunca quasar y muy poco de Vue. Claramente la IA me ha ayudado mucho y al final he conseguido un buen resultado. 
+
+## La implementacion de fibonacci 
+
+Aquí la verdad que ha sido sencillo ya que por lo que se pide se puede ir directamente a una solucion optima. Si por ejemplo se pide el n numero de la sucesion entonces lo primero que se piensa es en una solucion con recursividad lo cual esta bien, pero para mejorar esto habría que añadir un cache para no tener que calcular todo el rato f(x-1) + f(x-2). 
+
+Pero como tenemos que enseñar la tabla, si o si tenemos que guardar los numeros por lo que la implementacion es tan facil como calcular f(x) actual y no resetear el resultado. Con esto hacemos que el calculo del siguiente numero en la lista sea simplemente añadir los dos valores anterioir que nos hemos guardado. En codigo: 
+
+```js
+
+export default function calculateFibonacciRecursive(n) {
+  const result = []
+
+  //a y b serian nuestros f(x-1) y f(x-2) en la solucion recursiva
+  //he añadido el n porque a partir de la posicion 400 de la sucesion js me devolvia Infinity en vez de el numero
+  //con BigInt (es lo que significa la n) he podido llegar hasta mucho mas allá y enseñar todos los numeros 
+  //haciendo que el limite ahora este en lo que el ordenador pueda procesa
+  let a = 0n
+  let b = 1n
+
+  for (let i = 0; i <= n; i++) {
+    result.push({
+      position: i,
+      value: a
+    })
+
+    //Solo sumamos los valores anteriores porque los estamos manteniendo todo el rato por lo cual esto ya es optimo y no habria que hacer mucho mas
+    const next = a + b
+    a = b
+    b = next
+  }
+
+  return result
+}
+
+
+``` 

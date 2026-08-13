@@ -4,14 +4,15 @@
       <FibonacciPage />
     </div>
 
-    <div class="col bg-red">
-      hola
+    <div class="col bg-cian">
+      <TablasDatos />
     </div>
   </q-page>
 </template>
 
 <script setup>
 import FibonacciPage from '@/components/FibonacciPage.vue'
+import TablasDatos from '@/components/LlamadasApi.vue'
 </script>
 
 <style scoped>
