@@ -3,7 +3,7 @@
 
 import { defineConfig } from '#q-app'
 
-export default defineConfig((/* ctx */) => {
+export default defineConfig((ctx) => {
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -35,6 +35,13 @@ export default defineConfig((/* ctx */) => {
       target: {
         // browser: 'baseline-widely-available',
         // node: 'node22'
+      },
+
+      // Quasar CLI only auto-loads .env and .env.local by default, so
+      // .env.production (the file baked into the docker image) has to be
+      // requested explicitly here to be picked up on production builds.
+      env: {
+        file: ctx.prod ? '.env.production' : undefined,
       },
 
       // https://v2.quasar.dev/quasar-cli-vite/page-routing-with-vue-router#filename-based-routing

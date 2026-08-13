@@ -193,16 +193,24 @@ LEFT JOIN rates r
 ```
 
 ## Manejo de errores en /api/* 
+En los endpoints de la prueba se puede ver que no hay tratamiento de errores, esto es adrede ya que he puesto en backend/bootstrap/api.php que todo lo que caiga debajo de /api/* y tenga un fallo devuelva un 500 para no leakear nada ni facilitar la enumeracion de recursos. 
 
-explicar lo de app.php en el boostrap
-
+```php
+$exceptions->render(function (Throwable $e, Request $request) {
+    if ($request->is('api/*')) {
+        return response()->json([
+            'error' => [
+                'message' => 'Internal server error',
+            ],
+        ], 500);
+    }
+});
+```
 
 # Decisiones del frontend 
-
 Aquí la cosa se me ha complicado mucho porque no he tocado nunca quasar y muy poco de Vue. Claramente la IA me ha ayudado mucho y al final he conseguido un buen resultado. 
 
 ## La implementacion de fibonacci 
-
 Aquí la verdad que ha sido sencillo ya que por lo que se pide se puede ir directamente a una solucion optima. Si por ejemplo se pide el n numero de la sucesion entonces lo primero que se piensa es en una solucion con recursividad lo cual esta bien, pero para mejorar esto habría que añadir un cache para no tener que calcular todo el rato f(x-1) + f(x-2). 
 
 Pero como tenemos que enseñar la tabla, si o si tenemos que guardar los numeros por lo que la implementacion es tan facil como calcular f(x) actual y no resetear el resultado. Con esto hacemos que el calculo del siguiente numero en la lista sea simplemente añadir los dos valores anterioir que nos hemos guardado. En codigo: 
@@ -233,6 +241,4 @@ export default function calculateFibonacciRecursive(n) {
 
   return result
 }
-
-
 ``` 

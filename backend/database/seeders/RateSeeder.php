@@ -12,7 +12,7 @@ class RateSeeder extends Seeder
     {
         $roomTypeIds = RoomType::pluck('id')->all();
 
-        $totalRates = 5_000_000;
+        $totalRates = 10_000;
         $chunkSize = 10_000;
 
         for ($i = 0; $i < $totalRates; $i += $chunkSize) {

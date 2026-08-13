@@ -17,7 +17,6 @@ return new class extends Migration
                    ->constrained('room_types');
             $table->decimal('price', 10, 2);
             $table->date('valid_from');
-            $table->
             $table->index(['room_type_id', 'price']);
             $table->index(['room_type_id', 'valid_from']);
         });
