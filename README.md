@@ -1,3 +1,16 @@
+Buenas! En los diferentes apartados explico las partes en las que he tomado decisiones de como se harían ciertas cosas y el por qué. he dejado claro cuando la IA ha ayudado y ha resuelto problemas. 
+PD: Este readme entero ha sido escrito por mi por animo a que se lea de principio a fin!
+
+- [Decisiones del backend](#decisiones-del-backend)
+  * [¿Por qué el controlador esta en una API?](#%C2%BFpor-que-el-controlador-esta-en-una-api)
+  * [Los modelos, factories y seeders](#los-modelos-factories-y-seeders)
+  * [Primer ejecercicio](#primer-ejecercicio)
+  * [Primer ejercicio. Parte dos](#primer-ejercicio-parte-dos)
+  * [Manejo de errores en /api/*](#manejo-de-errores-en-api)
+- [Decisiones del frontend](#decisiones-del-frontend)
+  * [La implementacion de fibonacci](#la-implementacion-de-fibonacci)
+- [Deploy en local](#deploy-en-local)
+
 # Decisiones del backend
 ## ¿Por qué el controlador esta en una API?
 
@@ -211,7 +224,7 @@ $exceptions->render(function (Throwable $e, Request $request) {
 Aquí la cosa se me ha complicado mucho porque no he tocado nunca quasar y muy poco de Vue. Claramente la IA me ha ayudado mucho y al final he conseguido un buen resultado. 
 
 ## La implementacion de fibonacci 
-Aquí la verdad que ha sido sencillo ya que por lo que se pide se puede ir directamente a una solucion optima. Si por ejemplo se pide el n numero de la sucesion entonces lo primero que se piensa es en una solucion con recursividad lo cual esta bien, pero para mejorar esto habría que añadir un cache para no tener que calcular todo el rato f(x-1) + f(x-2). 
+Esta parte la verdad que ha sido sencillo ya que por lo que se pide se puede ir directamente a una solucion optima. Si por ejemplo se pide el n numero de la sucesion entonces lo primero que se piensa es en una solucion con recursividad lo cual esta bien, pero para mejorar esto habría que añadir un cache para no tener que calcular todo el rato f(x-1) + f(x-2). 
 
 Pero como tenemos que enseñar la tabla, si o si tenemos que guardar los numeros por lo que la implementacion es tan facil como calcular f(x) actual y no resetear el resultado. Con esto hacemos que el calculo del siguiente numero en la lista sea simplemente añadir los dos valores anterioir que nos hemos guardado. En codigo: 
 
@@ -242,3 +255,7 @@ export default function calculateFibonacciRecursive(n) {
   return result
 }
 ``` 
+
+# Deploy en local
+Para desplegar el proyecto hay que instalar las dependencias necesarias, rellenar los .envs y lanzarlo con docker compose up --build
+> Tener en cuenta que en entrypoint del contenedor del backend esta puesto que se ejecuten las seeds y esto con los 5 millones de rows que hay hace que vaya a tardar mucho. Es mejor quitar los indices y lanzarlo y luego meter los indices a mano. 
