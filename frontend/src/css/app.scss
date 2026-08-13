@@ -1,1 +1,14 @@
 // app global css
+
+
+// Esto creo que es un poco feo pero no he podido hacer otra cosa que no sea ajustar el height..
+html,
+body,
+#q-app {
+  height: 100%;
+}
+
+.q-layout,
+.q-page-container {
+  height: 100%;
+}

@@ -1,11 +1,11 @@
 <template>
-  <q-page class="row page">
-    <div class="col-6">
+  <q-page class="page row no-wrap">
+    <div class="col">
       <FibonacciPage />
     </div>
 
-    <div class="col-6 bg-red">
-      ali
+    <div class="col bg-red">
+      hola
     </div>
   </q-page>
 </template>
@@ -18,6 +18,5 @@ import FibonacciPage from '@/components/FibonacciPage.vue'
 .page {
   height: 100%;
   min-height: 0 !important;
-  overflow: hidden;
 }
 </style>

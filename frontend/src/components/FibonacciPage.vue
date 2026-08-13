@@ -1,28 +1,34 @@
 <template>
   <div class="column q-pa-md fit fibonacci-container">
-
     <q-input
       v-model.number="number"
+      type="number"
       rounded
       outlined
-      label="Ingresa el número!"
+      label="Introduce un numero"
+      :rules="[
+          val => val !== null || 'Introduce un numero',
+          val => val >= 0 || 'Introduce un numero mayor que 0',
+          val => Number.isInteger(val) || 'Introduce un numero entero'
+        ]"
     />
 
     <q-table
-      class="col q-mt-md"
+      class="col q-mt-md fibonacci-table"
       title="Secuencia de Fibonacci"
       :rows="rows"
       :columns="columns"
       row-key="position"
-      :pagination="{ rowsPerPage: 20 }"
+      :pagination="{ rowsPerPage: 50 }"
     />
 
   </div>
 </template>
 
+
 <script setup>
 import { ref, computed } from 'vue'
-import calculateFibonacci from '@/utils/fibonacci'
+import calculateFibonacciRecursive from '@/utils/fibonacci'
 
 const number = ref(null)
 
@@ -45,12 +51,20 @@ const columns = [
 ]
 
 const rows = computed(() => {
-  return calculateFibonacci(number.value)
+  return calculateFibonacciRecursive(number.value)
 })
 </script>
 
 <style scoped>
 .fibonacci-container {
+  min-height: 0;
+}
+
+.fibonacci-table {
+  min-height: 0;
+}
+
+.fibonacci-table :deep(.q-table__middle) {
   min-height: 0;
 }
 </style>
