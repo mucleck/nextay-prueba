@@ -20,6 +20,7 @@
       :columns="columns"
       row-key="position"
       :pagination="{ rowsPerPage: 50 }"
+      wrap-cells
     />
 
   </div>
@@ -46,7 +47,8 @@ const columns = [
     label: 'Fibonacci',
     align: 'right',
     field: 'value',
-    sortable: true
+    sortable: true,
+    classes: 'fibonacci-value-cell'
   }
 ]
 
@@ -66,5 +68,9 @@ const rows = computed(() => {
 
 .fibonacci-table :deep(.q-table__middle) {
   min-height: 0;
+}
+
+.fibonacci-table :deep(.fibonacci-value-cell) {
+  word-break: break-all;
 }
 </style>
