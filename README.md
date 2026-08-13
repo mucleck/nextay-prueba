@@ -257,5 +257,6 @@ export default function calculateFibonacciRecursive(n) {
 ``` 
 
 # Deploy en local
-Para desplegar el proyecto hay que instalar las dependencias necesarias, rellenar los .envs y lanzarlo con docker compose up --build
+Para desplegar el proyecto hay que lanzar el ./setup.sh que he puesto en la ruta del proyecto. No hace nada especial solo cambia el nombre a los archivos .env.example por el nombre .env para que la app se pueda ejecutar
+
 > Tener en cuenta que en entrypoint del contenedor del backend esta puesto que se ejecuten las seeds y esto con los 5 millones de rows que hay hace que vaya a tardar mucho. Es mejor quitar los indices y lanzarlo y luego meter los indices a mano. 
